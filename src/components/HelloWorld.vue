@@ -33,6 +33,7 @@ export default {
   background-color: #f9fafc;
 }
 .text-center {
-  text-align: center;
+  /* text-align: center; */
+  /* 不提交，直接切换分支，看看还在不在 */
 }
 </style>
