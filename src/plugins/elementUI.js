@@ -4,9 +4,13 @@ import {
      Select,
      Row,
      Col,
+     TimeSelect,
+     DatePicker,
 } from 'element-ui';
 
 Vue.use(Button)
 Vue.use(Select)
 Vue.use(Row)
 Vue.use(Col)
+Vue.use(TimeSelect)
+Vue.use(DatePicker)

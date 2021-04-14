@@ -1,0 +1,15 @@
+//  采用插件去编译，直接写
+.container {
+    width: 100%;
+    height: 800px;
+    .red {
+        background-color: red;
+        height: 100px;
+        width: 100px;
+    }
+    .blue {
+        background-color: yellow/*  */;
+        height: 200px;
+        width: 200px;
+    }
+}

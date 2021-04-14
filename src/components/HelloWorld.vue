@@ -2,7 +2,46 @@
   <div class="hello">
     <el-row>
       <el-col :span="24">
-        <div class="grid-content bg-purple-dark text-center">123</div>
+        <div class="grid-content bg-purple-dark text-center">{{ time }}</div>
+      </el-col>
+    </el-row>
+    <!--     <el-row>
+      <el-col :span="24">
+        <el-time-select
+          v-model="selectTimeValue"
+          :picker-options="pickerOptions"
+          placeholder="请选择时间"
+        ></el-time-select>
+      </el-col>
+    </el-row> -->
+    <el-row>
+      <el-col>
+        <!--         <div class="block">
+          <span class="demonstration">起始日期时刻为 12:00:00</span>
+          <el-date-picker
+            v-model="value1"
+            type="datetimerange"
+            start-placeholder="开始日期"
+            end-placeholder="结束日期"
+            :default-time="['12:00:00']"
+          >
+          </el-date-picker>
+        </div> -->
+        <div class="block">
+          <span class="demonstration"
+            >起始日期时刻为 12:00:00，结束日期时刻为 08:00:00</span
+          >
+          <el-date-picker
+            v-model="value2"
+            type="datetimerange"
+            align="right"
+            start-placeholder="开始日期"
+            end-placeholder="结束日期"
+            :picker-options="pickerOptionsTT"
+            :default-time="['12:00:00', '08:00:00']"
+          >
+          </el-date-picker>
+        </div>
       </el-col>
     </el-row>
   </div>
@@ -11,6 +50,35 @@
 <script>
 export default {
   name: "HelloWorld",
+  data() {
+    return {
+      time: "123",
+      selectTimeValue: null,
+      pickerOptions: {
+        start: "08:30",
+        step: "00:51",
+        end: "18:30",
+      },
+      value1: null,
+      value2: null,
+      pickerOptionsTT: {
+        disabledDate: (time) => {
+          console.log(time);
+          return time.getTime() > Date.now();
+        },
+      },
+    };
+  },
+  methods: {},
+  mounted() {
+    /* console.log(this.selectTimeValue);
+    console.log(typeof this.selectTimeValue);
+    setInterval(() => {
+      console.log("定时器开始了");
+      console.log(this.selectTimeValue);
+      console.log(typeof this.selectTimeValue);
+    }, 2000); */
+  },
 };
 </script>
 
