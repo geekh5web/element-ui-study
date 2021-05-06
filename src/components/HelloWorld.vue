@@ -48,6 +48,7 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: "HelloWorld",
   data() {
@@ -69,7 +70,35 @@ export default {
       },
     };
   },
-  methods: {},
+  methods: {
+    requestList(params) {
+      var instance = axios.create({
+        baseURL: "https://www.baidu.com",
+      });
+      var request = {
+        method: "get",
+        url: "/s",
+        params: params,
+      };
+      return instance(request);
+    },
+    getList() {
+      this.requestList({ wd: "vue" })
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((erro) => {
+          console.log(erro);
+        });
+    },
+    testAxios() {
+      const url = "12344";
+      let data = { a: "1", b: "2" };
+      axios.get(url, { params: data }).then((res) => {
+        console.log(res);
+      });
+    },
+  },
   mounted() {
     /* console.log(this.selectTimeValue);
     console.log(typeof this.selectTimeValue);
@@ -78,6 +107,8 @@ export default {
       console.log(this.selectTimeValue);
       console.log(typeof this.selectTimeValue);
     }, 2000); */
+    this.getList();
+    this.testAxios();
   },
 };
 </script>
