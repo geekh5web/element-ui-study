@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>闭包</title>
+    <style>
+        div {
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            border: 1px solid #666;
+            text-align: center;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<p>作用可以让外部使用，且不污染全局环境。</p>
+
+<body>
+    <script>
+        /*         for (var i = 0; i < 10; i++) {
+            var a = document.createElement('div');
+            a.innerHTML = i;
+            a.onclick = function () {
+                alert(i);
+            }
+            document.body.appendChild(a)
+        } */
+        // 始终弹出10
+        // 方法一：用let去改变
+        /*         for (let i = 0; i < 10; i++) {
+                    var a = document.createElement('div');
+                    a.innerHTML = i;
+                    a.onclick = function () {
+                        alert(i);
+                    }
+                    document.body.appendChild(a)
+                } */
+        // 方法二： 利用闭包生成局部作用域
+        for (var i = 0; i < 10; i++) {
+            (function (i) {
+                var a = document.createElement('div');
+                a.innerHTML = i;
+                a.onclick = function () {
+                    alert(i);
+                }
+                document.body.appendChild(a)
+            })(i)
+        }
+    </script>
+</body>
+
+</html>
