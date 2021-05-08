@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>canvas</title>
+  <style>
+    canvas {
+      background-color: lightblue;
+      border: 1px solid black;
+    }
+  </style>
+</head>
+
+<body>
+  <p>平移旋转缩放操作对象都是坐标轴</p>
+  <p>可以在任何地方操作，beginPath（）无法重置坐标系</p>
+  <canvas id="canvas" width="800" height="800">
+    您的浏览器不支持canvas
+  </canvas>
+  <script>
+    /** @type {HTMLCanvasElement} */ //vs开启canvas提示
+    var canvas = document.getElementById('canvas');
+    var ctx = canvas.getContext('2d');
+    ctx.translate(100, 100);
+    ctx.moveTo(0, 0);
+    ctx.lineTo(100, 100);
+    ctx.stroke()
+    ctx.lineTo(-100, -150);
+    ctx.stroke()
+    ctx.beginPath()
+    ctx.rotate(Math.PI / 4);
+    console.log(Math.PI);
+    ctx.lineWidth = 5;
+    ctx.strokeStyle = 'red'
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.fillStyle = 'yellow';
+    ctx.fillRect(200, 200, 200, 200);
+    ctx.scale(1, 0.5)
+    ctx.fillStyle = 'blue';
+    ctx.fillRect(500, 200, 200, 200);
+  </script>
+</body>
+
+</html>

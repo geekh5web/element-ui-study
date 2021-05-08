@@ -20,11 +20,12 @@
     canvas.width='600'
     canvas.height='600'
     var ctx=canvas.getContext("2d");
-    ctx.moveTo(100,100);
-    ctx.lineTo(150,200)
+    ctx.moveTo(100,100);//移动到某个点的位置，初始化为0.0
+    ctx.lineTo(150,200);//划直线
     ctx.strokeStyle='blue';
     ctx.stroke();
     ctx.beginPath();
+    // ctx.lineTo(150,200);
     ctx.moveTo(150,200);
     ctx.lineTo(50,200)
     ctx.strokeStyle='green';

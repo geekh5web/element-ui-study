@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>canvas</title>
+    <style>
+        canvas{background-color:lightblue;}
+    </style>
+</head>
+<body>
+    <p>strokeRect是封装的方法，自身会直接画，其他的方法必须执行stroke（）时从内存画出到canvas中</p>
+    <p>strokeRect（x,y,width,height）</p>
+    <p>arc（圆心-x,圆心-y,半径R,初始弧度（0），结束弧度（2*Math.PI）,bool(正向还是反向画)）</p>
+    <p>对应fill-stroke</p>
+    <p>fillRect-strokeRect</p>
+    <p>fillStyle-strokeStyle默认填充黑色</p>
+    <canvas id="canvas" width="800" height="800">
+        您的浏览器不支持canvas
+    </canvas>
+    <script>
+        /** @type {HTMLCanvasElement} */ //vs开启canvas提示
+        var canvas=document.getElementById('canvas');
+        var ctx=canvas.getContext('2d');
+        ctx.strokeStyle='blue';
+        ctx.lineWidth=10;
+        ctx.moveTo(288,32);
+        ctx.lineTo(358,173)
+
+        ctx.moveTo(430,173)
+        ctx.lineTo(502,32)
+        ctx.strokeRect(290,173,213,141);//头
+        ctx.strokeRect(261,202,28,58);//耳朵
+        ctx.strokeRect(502,202,28,58);//耳朵
+        ctx.lineWidth=2;
+        ctx.strokeRect(360,266,70,30);//嘴巴
+        ctx.strokeRect(325,315,144,213);//躯干
+        ctx.strokeRect(109,385,216,32);//左手
+        ctx.strokeRect(468,385,216,32);//右手
+        ctx.strokeRect(356,528,32,216);//左腿
+        ctx.strokeRect(416,528,32,216);//右腿
+        // ctx.strokeRect(416,528,32,216);//右腿
+        ctx.fillStyle='rgba(255,255,100,0.5)'
+        ctx.fillRect(416,528,32,216);//右腿
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.lineWidth=2;
+        ctx.arc(346,233,15,0,2*Math.PI)//右眼
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.lineWidth=10;
+        ctx.arc(446,233,15,0,2*Math.PI)
+        ctx.fillStyle='rgba(255,255,100,0.5)'
+        ctx.fill();
+        ctx.stroke()
+//在此处写出代码
+/*     arc原
+    strokeRect
+    closePath */
+	</script>
+</body>
+
+</html>
