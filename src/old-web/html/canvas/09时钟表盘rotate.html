@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>canvasL</title>
+  <style>
+    canvas {
+      background-color: lightblue;
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="canvas" width="600px" height="600px">您的浏览器不支持</canvas>
+  <script>
+    // 在此处写出代码
+    /** @type {HTMLCanvasElement} */ //vs开启canvas提示
+    var canvas = document.getElementById('canvas')
+    var ctx = canvas.getContext('2d');
+    ctx.arc(300, 300, 200, 0, 2 * Math.PI)
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.translate(300, 300);
+    for (var i = 0; i < 12; i++) {
+      ctx.rotate((Math.PI) / 6)
+      ctx.moveTo(180, 0)
+      ctx.lineTo(200, 0)
+    }
+    ctx.stroke();
+
+  </script>
+</body>
+
+</html>

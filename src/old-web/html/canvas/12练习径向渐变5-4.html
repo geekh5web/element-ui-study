@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>canvas渐变</title>
+</head>
+
+<body>
+  <canvas id="canvas" width="800px" height="800px">您的浏览器不支持</canvas>
+  <script>
+    /** @type {HTMLCanvasElement} */
+    var canvas = document.getElementById("canvas");
+    var context = canvas.getContext("2d");
+    //此处补充代码
+    context.translate(400, 400)
+    context.arc(0, 0, 150, 0, 2 * Math.PI);
+    var radialGradient = context.createRadialGradient(0, 0, 0, 0, 0, 150);
+    // 前三个参数为渐变的起始位置，（起始圆心-x，起始圆心-y，起始半径r，结束圆心-x，结束圆心-y，结束半径r）
+    radialGradient.addColorStop(0, "rgba(255,178,73,1)");
+    radialGradient.addColorStop(0.2, "rgba(253,192,206,1)");
+    radialGradient.addColorStop(0.4, "rgb(176,218,231)");
+    radialGradient.addColorStop(0.6, "rgba(255,178,73,1)");
+    radialGradient.addColorStop(0.8, "rgba(253,192,206,1)");
+    radialGradient.addColorStop(1, "rgb(176,218,231)");
+    context.fillStyle = radialGradient;
+    context.fill();
+  </script>
+</body>
+
+</html>

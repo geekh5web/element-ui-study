@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Document</title>
+  <style>
+    /* 注意这里的干扰，外层如果设置了canvans的背景色和透明度，里面所有颜色都会改变 */
+    /*     canvas {
+      background-color: #000;
+      opacity: 0.7
+    } */
+  </style>
+</head>
+
+<body>
+  <canvas id="canvas" width="463px" height="386px">
+    您的浏览器不支持canvas
+  </canvas>
+  <script>
+    /** @type{HTMLCanvasElement} */
+    var canvas = document.getElementById("canvas");
+    var context = canvas.getContext("2d");
+    context.fillStyle = 'rgb(77,77,77)'
+    context.fillRect(0, 0, canvas.width, canvas.height);
+    // 在此处补充代码
+    context.save();
+    // 画月亮
+    context.arc(30, 37, 20, 0, 2 * Math.PI)
+    context.fillStyle = 'rgba(237,237,91,1)'
+    //月亮阴影
+    context.shadowOffsetX = 5;
+    context.shadowOffsetY = 5;
+    context.shadowBlur = 10
+    context.shadowColor = 'rgba(140,140,140,1)'
+    context.fill();
+    context.restore();
+    //写文字
+    context.save()
+    context.shadowOffsetX = 3;
+    context.shadowOffsetY = 14;
+    context.shadowBlur = 10;
+    context.shadowColor = 'rgba(152,152,147,0.9)'
+    var str = '山高月小';
+    context.fillStyle = 'rgb(255,255,255)'
+    context.font = '37px STXingkai'
+    context.fillText(str, 237, 64);
+    context.restore();
+    //画山峰，贝塞尔
+    context.save()
+    // 山峰阴影
+    context.shadowOffsetX = 13;
+    context.shadowOffsetY = 8;
+    context.shadowBlur = 8;
+    context.shadowColor = 'rgba(80, 83, 98, 0.9)';
+    context.fillStyle = 'rgba(89, 99, 151, 0.9)';
+    //第一座山，二次贝萨尔曲线http://blogs.sitepointstatic.com/examples/tech/canvas-curves/quadratic-curve.html
+    context.lineWidth = 6;
+    context.strokeStyle = "rgba(89,99,151,0.9)";
+    context.beginPath();
+    context.moveTo(44, 493);  //曲线起点
+    context.quadraticCurveTo(100, -87, 171, 501);//(曲线的拖动点，曲线的终点)
+    context.stroke();
+
+    //第二座山，三次贝萨尔曲线http://blogs.sitepointstatic.com/examples/tech/canvas-curves/bezier-curve.html
+    context.beginPath();
+    context.moveTo(72, 461);//曲线起点
+    context.bezierCurveTo(167, 36, 291, 38, 384, 472);//(曲线的拖动点，曲线的拖动点，曲线的终点)
+    context.stroke();
+    context.restore();
+  </script>
+</body>
+
+</html>

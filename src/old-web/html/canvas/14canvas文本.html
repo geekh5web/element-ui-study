@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>canvas文本</title>
+  <style>
+    canvas {
+      background-color: pink;
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="canvas" width="800px" height="800px">您的浏览器不支持</canvas>
+  <script>
+    /** @type {HTMLCanvasElement} */
+
+    var canvas = document.getElementById("canvas");
+    var context = canvas.getContext("2d");
+    //在此处补充代码
+    var str = "hello word";
+    //设置文本样式
+    context.font = "30px sans-serif";
+    //文本水平居中
+    context.textAlign = 'left';//left,center,right,start(默认)，end
+    //文本垂直居中
+    //填充文本
+    context.fillText(str, 100, 100);
+    context.strokeStyle = 'yellow';
+    context.lineWidth = 2;
+    //描边文本
+    context.strokeText(str, 100, 300)
+
+    //获取文本宽度，无高度获取方法
+    var width = context.measureText(str).width;
+    console.log(width)
+  </script>
+</body>
+
+</html>

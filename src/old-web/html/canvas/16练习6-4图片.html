@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>canvas图片</title>
+  <style>
+    canvas {
+      background-color: lightblue;
+    }
+  </style>
+</head>
+
+<body>
+  <h3>drawImage参数</h3>
+  <p>绘图drawImage(img,绘图-x,绘图-y);</p>
+
+  <p>绘图且压缩drawImage(img,绘图-x,绘图-y,压缩后width，压缩后height);</p>
+  <p>
+    截图+绘图且压缩drawImage(img,截图-x,截图-y，截图-width，截图-height，绘图-x,绘图-y,压缩后width，压缩后height);绘图且压缩drawImage(img,绘图-x,绘图-y,压缩后width，压缩后height);
+  </p>
+
+  <canvas id="canvas" width="800px" height="800px">您的浏览器不支持canvas
+  </canvas>
+
+  <script>
+    /** @type {HTMLCanvasElement} */
+    var canvas = document.getElementById("canvas");
+    var context = canvas.getContext('2d');
+    //在此处补充代码
+    context.arc(400, 400, 200, 0, 2 * Math.PI)
+    context.fill();
+    var img = new Image();
+    img.src = 'http://climg.mukewang.com/59859f4d00014f1503000100.jpg';
+    img.onload = () => {
+      context.drawImage(img, 250, 350)//在坐标点（250,350）处绘制图像
+      context.drawImage(img, 250, 50, 100, 100)//在坐标点（250,50）处绘制图像,图像处理（放大缩小压缩）成100,100
+      context.drawImage(img, 32, 16, 70, 70, 250, 650, 100, 100)//从(32,16)开始，截原图尺寸70*70，然后放在（250,650）的点上，处理成100*100
+    }
+/*       绘图drawImage(img,绘图-x,绘图-y);
+                          绘图且压缩drawImage(img,绘图-x,绘图-y,压缩后width，压缩后height);
+                          截图+绘图且压缩drawImage(img,截图-x,截图-y，截图-width，截图-height，绘图-x,绘图-y,压缩后width，压缩后height);  */
+  </script>
+</body>
+
+</html>

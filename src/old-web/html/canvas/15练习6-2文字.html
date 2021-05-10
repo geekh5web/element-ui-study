@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>canvas字体</title>
+  <style>
+    canvas {
+      background-color: lightblue;
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="canvas" width="800px" height="800px">您的浏览器不支持canvas
+  </canvas>
+  <script>
+    /**@type{HTMLCanvasElement} */
+    var canvas = document.getElementById("canvas");
+    var context = canvas.getContext('2d');
+    //此处补充代码
+    var str = '显示的文本';
+    // context.fontSize = '30px';//不起作用
+    context.font = 'bold 30px 微软雅黑';
+    context.fillStyle = 'blue';
+    context.textAlign = 'center';
+    context.textBaseline = 'middle';
+    context.fillText(str, 400, 400)
+    var width = context.measureText(str).width;
+    str = '字体的width是：' + width + 'px';
+    context.fillText(str, 400, 600)
+  </script>
+</body>
+
+</html>

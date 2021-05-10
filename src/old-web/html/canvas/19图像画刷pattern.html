@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>canvas图片</title>
+  <style>
+    canvas {
+      background-color: lightblue;
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="canvas" width="800px" height="800px">您的浏览器不支持canvas
+  </canvas>
+
+  <script>
+    /** @type {HTMLCanvasElement} */
+    var canvas = document.getElementById("canvas");
+    var context = canvas.getContext('2d');
+    //在此处补充代码
+    context.fillRect(0, 0, canvas.width, canvas.height)
+    var img = new Image()
+    img.src = 'http://climg.mukewang.com/59859f4d00014f1503000100.jpg';
+    img.onload = () => {
+      var pattern = context.createPattern(img, 'repeat')
+      // var pattern = context.createPattern(img, 'repeat-x')
+      // var pattern = context.createPattern(img, 'repeat-y')
+      // var pattern = context.createPattern(img, 'no-repeat')
+      context.fillStyle = pattern;
+      context.fillRect(0, 0, canvas.width, canvas.height)
+    }
+  </script>
+</body>
+
+</html>

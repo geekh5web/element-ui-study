@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Document</title>
+  <style>
+    canvas {
+      background-color: lightblue;
+    }
+  </style>
+</head>
+
+<body>
+  <p>clip()会剪辑所有后续绘图，再画之前save保存环境，画完restore即可消除影响</p>
+  <canvas id="canvas" width="800px" height="800px">
+    您的浏览器不支持canvas
+  </canvas>
+  <script>
+    /** @type{HTMLCanvasElement} */
+    var canvas = document.getElementById("canvas");
+    var context = canvas.getContext("2d");
+    //在此处补充代码
+    context.save()
+    context.translate(400, 400);
+    context.arc(0, 0, 150, 0, 2 * Math.PI);
+    // context.fill();
+    // context.stroke();
+    context.clip();
+    context.fillStyle = 'red';
+    context.fillRect(0, 0, 150, 150);
+    context.fillStyle = 'yellow';
+    context.fillRect(-150, 0, 150, 150);
+    context.fillStyle = 'blue';
+    context.fillRect(-150, -150, 150, 150);
+    context.fillStyle = 'green';
+    context.fillRect(0, -150, 150, 150);
+    // 环境恢复准备下一次
+    context.beginPath();
+    context.restore();
+    context.translate(200, 100);
+    //采用圆和旋转实现
+    context.arc(0, 0, 100, 0, 2 * Math.PI);
+    context.clip();
+    var colors = ['red', 'blue', 'yellow', 'green'];
+    for (var i = 0; i < 4; i++) {
+      context.fillStyle = colors[i];
+      context.fillRect(0, 0, 100, 100);
+      context.rotate(Math.PI / 2);
+    }
+  </script>
+</body>
+
+</html>

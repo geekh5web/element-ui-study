@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>阴影</title>
+  <style>
+    canvas {
+      background-color: lightblue;
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="canvas" width="800px" height="800px">
+    您的浏览器不支持canvas
+  </canvas>
+  <script>
+    /** @type {HTMLCanvasElement} */
+    var canvas = document.getElementById("canvas");
+    var context = canvas.getContext("2d");
+    //在此处补充代码
+    context.save()
+    context.shadowOffsetX = -15;
+    context.shadowOffsetY = -15;
+    context.shadowBlur = 20;
+    context.shadowColor = ' rgba(255, 215, 0, 0.7)';
+    context.arc(canvas.width / 2, canvas.height / 2, 50, 0, 2 * Math.PI);
+    context.fillStyle = 'red'
+    context.fill()
+    context.font = ' bold 30px 微软雅黑'
+    var str = 'hello';
+    context.fillText(str, 200, 100);
+    context.restore()//不恢复环境后续所有图像都带投影
+    context.font = ' bold 30px 微软雅黑'
+    var str = 'hello';
+    context.fillText(str, 100, 100);
+  </script>
+</body>
+
+</html>

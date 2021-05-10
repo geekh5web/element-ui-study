@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>离屏canvas动画</title>
+  <style>
+    canvas {
+      background-color: lightblue;
+    }
+
+    #backgroundCanvas {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <canvas width="800px" height="800px" id="canvas">您的浏览器不支持canvas</canvas>
+  <!-- 创建离屏的canvas -->
+  <canvas width="800px" height="800px" id="backgroundCanvas">您的浏览器不支持canvas</canvas>
+  <script>
+    /** @type {HTMLCanvasElement} */
+    var canvas = document.getElementById("canvas");
+    var backgroundCanvas = document.getElementById("backgroundCanvas");
+    var context = canvas.getContext("2d");
+    var backgroundContext = backgroundCanvas.getContext("2d");
+    context.fillStyle = 'green'
+    var posx = 100, posy = 0, dir = 1, isMousemove = false;
+    /*     var drawBackGround = function () {
+          for (var k = 0; k <= 10; k++) { //仅为说明性能损耗，无实际含义
+            for (var i = 0; i < canvas.width; i += 10) {
+              for (var j = 0; j < canvas.height; j += 10) {
+                context.beginPath();
+                context.strokeStyle = 'black'
+                context.arc(i, j, 5, 0, 2 * Math.PI)
+                context.stroke();
+              }
+            }
+          }
+        } */
+    var drawBackGround = function () {
+      for (var k = 0; k <= 10; k++) { //仅为说明性能损耗，无实际含义
+        for (var i = 0; i < backgroundCanvas.width; i += 10) {
+          for (var j = 0; j < backgroundCanvas.height; j += 10) {
+            backgroundContext.beginPath();
+            backgroundContext.strokeStyle = 'black'
+            backgroundContext.arc(i, j, 5, 0, 2 * Math.PI)
+            backgroundContext.stroke();
+          }
+        }
+      }
+    }
+    drawBackGround()
+    //补充代码
+    setInterval(() => {
+      if (isMousemove) return
+      posy += 20 * dir;
+      // clearRect清空画布的一个区域
+      context.clearRect(0, 0, canvas.width, canvas.height)
+      // context.clearRect(0, 0, canvas.width, canvas.height)//办法一：仅清楚部分画布，参数待调试
+      // drawBackGround();//办法二，每次清楚之后重新画画布，但较为耗费性能，采用离屏技术解决
+      context.drawImage(backgroundCanvas, 0, 0, backgroundCanvas.width, backgroundCanvas.height, 0, 0, canvas.width, canvas.height);
+      //离屏cavas，复杂图像可以直接画，而不用一次次的调用函数去，优化了算法，注意不是img对象也不是canvas上下问context，这里直接用canvas
+      context.fillRect(posx, posy, 50, 50)
+      if (posy > canvas.height - 50) {
+        dir = -1;
+      } else if (posy < 0) {
+        dir = 1;
+      }
+    }, 100)
+    // 绑定鼠标事件
+
+    canvas.onmousemove = (e) => {
+      if (e.offsetX > posx && e.offsetX < posx + 50
+        & e.offsetY > posy && e.offsetY < posy + 50) {
+        isMousemove = true
+      } else {
+        isMousemove = false;
+      }
+    }
+    // drawBackGround() //无法实现需求，会被定时器内清背景清楚
+  </script>
+</body>
+
+</html>
